@@ -3,25 +3,53 @@ package com.philipeborges.gerenciador_pedidos.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table(name = "pedidos")
 public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "pedido_produto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    
+    private List<Produto> produtos;
     private LocalDate data;
 
     public Pedido() {
     }
-
-    public Pedido(LocalDate data) {
+        public Pedido(Long id, LocalDate data) {
+        this.id = id;
         this.data = data;
     }
 
-    public Pedido(Long id, LocalDate data) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
         this.data = data;
     }
 }

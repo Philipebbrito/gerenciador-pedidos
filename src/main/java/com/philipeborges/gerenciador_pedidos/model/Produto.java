@@ -8,6 +8,9 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
+    private Fornecedor fornecedor;
     private String nome;
     private Double preco;
 
@@ -22,10 +25,18 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Produto(String nome, Double preco, Categoria categoria) {
+    public Produto(String nome, Double preco, Categoria categoria){
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
+    }
+
+    public Produto(String nome, Double preco, Categoria categoria, Fornecedor fornecedor) {
+        this.nome = nome;
+        this.preco = preco;
+        this.categoria = categoria;
+        this.fornecedor = fornecedor;
+
 
     }
 
@@ -59,5 +70,13 @@ public class Produto {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
 }
