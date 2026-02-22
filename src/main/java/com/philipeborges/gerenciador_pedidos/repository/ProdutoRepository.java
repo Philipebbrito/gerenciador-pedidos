@@ -2,6 +2,7 @@ package com.philipeborges.gerenciador_pedidos.repository;
 
 import com.philipeborges.gerenciador_pedidos.model.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
@@ -29,6 +30,5 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     List<Produto> findTop3ByPrecoDesc();
 
     List<Produto> findTop5ByCategoriaNomeOrderByPrecoAsc(String categoriaNome);
-
 
 }

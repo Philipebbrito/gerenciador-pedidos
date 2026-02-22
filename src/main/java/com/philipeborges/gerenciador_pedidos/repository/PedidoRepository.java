@@ -17,6 +17,4 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
     List<Pedido> findByDataPedidoBetween(LocalDate dataInicio, LocalDate dataFim);
 
-
-
 }
